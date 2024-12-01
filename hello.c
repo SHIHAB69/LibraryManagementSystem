@@ -9,8 +9,8 @@ typedef struct {
     char title[100];
     char author[50];
     int quantity;
-    int isIssued; // 0 = Available, 1 = Issued
-    float price;  // Price per book
+    int isIssued; 
+    float price;  
 } Book;
 
 typedef struct {
@@ -24,7 +24,7 @@ IssueRecord issuedBooks[MAX_BOOKS];
 int bookCount = 0;
 int issueCount = 0;
 
-// Function prototypes
+
 int adminLogin();
 void addBook();
 void viewBooks();
@@ -39,7 +39,7 @@ int main() {
 
     printf("\n--- Welcome to the Library Management System ---\n");
 
-    // Admin login
+    
     if (!adminLogin()) {
         printf("Invalid login. Exiting program.\n");
         return 0;
@@ -47,7 +47,7 @@ int main() {
 
     printf("Login successful! Welcome, Admin.\n");
 
-    // Main menu
+  
     while (1) {
         printf("\n--- Library Management Menu ---\n");
         printf("1. Add Book\n");
@@ -86,11 +86,11 @@ int adminLogin() {
     printf("Enter Password: ");
     scanf("%s", password);
 
-    // Check credentials
+   
     if (strcmp(adminId, "admin") == 0 && strcmp(password, "admin203") == 0) {
-        return 1; // Successful login
+        return 1; 
     } else {
-        return 0; // Login failed
+        return 0; 
     }
 }
 
@@ -103,9 +103,9 @@ void addBook() {
     printf("Enter Book ID: ");
     scanf("%d", &library[bookCount].id);
     printf("Enter Book Title: ");
-    getchar(); // Clear the buffer
+    getchar(); 
     fgets(library[bookCount].title, 100, stdin);
-    strtok(library[bookCount].title, "\n"); // Remove newline
+    strtok(library[bookCount].title, "\n"); 
     printf("Enter Author Name: ");
     fgets(library[bookCount].author, 50, stdin);
     strtok(library[bookCount].author, "\n");
@@ -146,7 +146,7 @@ void viewAvailableBooks() {
 
     printf("\n--- List of Available Books ---\n");
     for (int i = 0; i < bookCount; i++) {
-        if (library[i].quantity > 0) { // Show only books with stock available
+        if (library[i].quantity > 0) { 
             printf("ID: %d, Title: %s, Author: %s, Quantity: %d, Price: $%.2f\n",
                    library[i].id,
                    library[i].title,
@@ -184,11 +184,11 @@ void issueBook() {
             printf("Enter User ID: ");
             scanf("%d", &userId);
             printf("Enter User Name: ");
-            getchar(); // Clear buffer
+            getchar(); 
             fgets(userName, 50, stdin);
             strtok(userName, "\n");
 
-            // Store issue record
+           
             issuedBooks[issueCount].userId = userId;
             strcpy(issuedBooks[issueCount].userName, userName);
             issuedBooks[issueCount].bookId = bookId;
